@@ -45,7 +45,7 @@ export const tokens = (mode) => ({
           400: "#e2726e",
           500: "#db4f4a",
           600: "#af3f3b",
-          700: "#832f2c",
+          700: "#db4f4a",
           800: "#58201e",
           900: "#2c100f",
         },
@@ -70,6 +70,28 @@ export const tokens = (mode) => ({
           700: '#BB6F04',
           800: '#844E03',
           900: '#4D2E02',
+        },
+        violetAccent: {
+          100: '#E0CAFF',
+          200: '#C8A1FF',
+          300: '#AF79FF',
+          400: '#9750FF',
+          500: '#7F27FF',
+          600: '#6100EE',
+          700: '#4A00B6',
+          800: '#33007E',
+          900: '#1C0046',
+        },
+        pinkyAccent: {
+          100: '#FFE1F1',
+          200: '#FFB8DE',
+          300: '#FF90CB',
+          400: '#FF67B8',
+          500: '#FF3EA5',
+          600: '#FF068B',
+          700: '#CD006D',
+          800: '#95004F',
+          900: '#5D0031',
         },
       }
     : {
@@ -138,6 +160,28 @@ export const tokens = (mode) => ({
           700: '#FDCA84',
           800: '#FDDBAC',
           900: '#FEEDD4',
+        },
+        violetAccent: {
+          100: '#1C0046',
+          200: '#33007E',
+          300: '#4A00B6',
+          400: '#6100EE',
+          500: '#7F27FF',
+          600: '#9750FF',
+          700: '#AF79FF',
+          800: '#C8A1FF',
+          900: '#E0CAFF',
+        },
+        pinkyAccent: {
+          100: '#5D0031',
+          200: '#95004F',
+          300: '#CD006D',
+          400: '#FF068B',
+          500: '#FF3EA5',
+          600: '#FF67B8',
+          700: '#FF90CB',
+          800: '#FFB8DE',
+          900: '#FFE1F1',
         },
       }),
 });
@@ -234,3 +278,23 @@ export const useMode = () => {
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   return [theme, colorMode];
 };
+
+export const getStatusColor = (status,mode) => {
+  const colors = tokens(mode);
+  switch (status) {
+    case "Em Processamento":
+      return colors.blueAccent[700];
+    case "Aguardando Pagamento":
+      return colors.pinkyAccent[700];
+    case "Pagamento Confirmado":
+      return colors.violetAccent[700];
+    case "Aguardando Retirada":
+      return colors.yellowAccent[700];
+    case "Aguardando Entrega":
+      return colors.yellowAccent[700];
+    case "Cancelado":
+      return colors.redAccent[700];
+    case "Entregue":
+      return colors.greenAccent[700];
+  }
+}

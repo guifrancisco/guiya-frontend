@@ -1,5 +1,5 @@
 import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
-import { tokens } from "../../theme";
+import { tokens, getStatusColor } from "../../theme";
 import { mockTransactions } from "../../data/mockData";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
@@ -189,7 +189,11 @@ const Dashboard = () => {
               Pedidos Ativos
             </Typography>
           </Box>
-          {mockTransactions.map((transaction, i) => (
+          {mockTransactions.map((transaction, i) => {
+
+          const backgroundColor = getStatusColor(transaction.status, theme.palette.mode);
+
+          return (
             <Box
               key={`${transaction.txId}-${i}`}
               display="flex"
@@ -199,13 +203,13 @@ const Dashboard = () => {
               p="15px"
             >
               <Box>
-              <Typography
-                  color={colors.blueAccent[500]}
-                  variant="h5"
-                  fontWeight="600"
-                >
-                  {transaction.txId}
-                </Typography>
+                <Typography
+                    color={colors.blueAccent[500]}
+                    variant="h5"
+                    fontWeight="600"
+                  >
+                    {transaction.txId}
+                  </Typography>
               </Box>
               <Box>
                 <Typography color={colors.grey[100]}>
@@ -216,7 +220,7 @@ const Dashboard = () => {
                 {transaction.date}
               </Box>
               <Box
-                backgroundColor={colors.greenAccent[600]}
+                backgroundColor={backgroundColor}
                 p="5px 10px"
                 borderRadius="4px"
               >
@@ -230,7 +234,9 @@ const Dashboard = () => {
                 ${transaction.cost}
               </Box>
             </Box>
-          ))}
+          );
+        })}
+
         </Box>
 
         {/* ROW 3 */}
