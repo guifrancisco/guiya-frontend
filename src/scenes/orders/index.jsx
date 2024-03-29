@@ -3,6 +3,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { mockDataOrders } from "../../data/mockData";
 import Header from "../../components/Header";
+import Title from "../../components/Title";
 
 const Orders = () => {
   const theme = useTheme();
@@ -44,6 +45,7 @@ const Orders = () => {
 
   return (
     <Box m="20px">
+      <Title title={"GUIYA | Pedidos"}></Title>
       <Header title="Pedidos" subtitle="List of Invoice Balances" />
       <Box
         m="40px 0 0 0"

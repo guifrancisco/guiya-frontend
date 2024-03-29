@@ -1,6 +1,7 @@
 import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
 import { tokens, getStatusColor } from "../../theme";
 import { mockTransactions } from "../../data/mockData";
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
 import EmailIcon from "@mui/icons-material/Email";
@@ -12,6 +13,7 @@ import LineChart from "../../components/LineChart";
 import BarChart from "../../components/BarChart";
 import StatBox from "../../components/StatBox";
 import ProgressCircle from "../../components/ProgressCircle";
+import Title from "../../components/Title";
 
 const Dashboard = () => {
   const theme = useTheme();
@@ -19,6 +21,7 @@ const Dashboard = () => {
 
   return (
     <Box m="20px">
+      <Title title={"GUIYA | Dashboard"}></Title>
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Header title="Dashboard"/>
@@ -57,11 +60,11 @@ const Dashboard = () => {
         >
           <StatBox
             title="1,361"
-            subtitle="Emails Enviados"
+            subtitle="Mensagens Enviadas"
             progress="0.75"
             increase="+14%"
             icon={
-              <EmailIcon
+              <WhatsAppIcon
                 sx={{ color: colors.blueAccent[500], fontSize: "26px" }}
               />
             }
@@ -186,7 +189,7 @@ const Dashboard = () => {
             p="15px"
           >
             <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
-              Pedidos Ativos
+              Pedidos
             </Typography>
           </Box>
           {mockTransactions.map((transaction, i) => {

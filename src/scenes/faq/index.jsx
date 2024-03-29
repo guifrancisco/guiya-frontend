@@ -6,12 +6,14 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { tokens } from "../../theme";
+import Title from "../../components/Title";
 
 const FAQ = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   return (
     <Box m="20px">
+      <Title title={"GUIYA | FAQ"}></Title>
       <Header title="FAQ" subtitle="Frequently Asked Questions Page" />
 
       <Accordion defaultExpanded>

@@ -149,7 +149,7 @@ const Sidebar = () => {
               color={colors.grey[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
-              Data
+              Gerenciar
             </Typography>
             <Item
               title="Gerenciar Equipe"
@@ -178,7 +178,7 @@ const Sidebar = () => {
               color={colors.grey[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
-              Pages
+              Páginas
             </Typography>
             <Item
               title="Criar Usuario"
@@ -188,7 +188,7 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
             <Item
-              title="Calendario"
+              title="Calendário"
               to="/calendar"
               icon={<CalendarTodayOutlinedIcon />}
               selected={selected}
@@ -207,10 +207,10 @@ const Sidebar = () => {
               color={colors.grey[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
-              Charts
+              Gráficos
             </Typography>
             <Item
-              title="Frequencia de Vendas"
+              title="Frequência de Vendas"
               to="/bar"
               icon={<BarChartOutlinedIcon />}
               selected={selected}
@@ -224,7 +224,7 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
             <Item
-              title="Items Vendidos"
+              title="Itens Vendidos"
               to="/line"
               icon={<TimelineOutlinedIcon />}
               selected={selected}

@@ -6,6 +6,7 @@ import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettin
 import LockOpenOutlinedIcon from "@mui/icons-material/LockOpenOutlined";
 import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import Header from "../../components/Header";
+import Title from "../../components/Title";
 
 const Team = () => {
   const theme = useTheme();
@@ -70,6 +71,7 @@ const Team = () => {
 
   return (
     <Box m="20px">
+      <Title title={"GUIYA | Gerenciar Equipe"}></Title>
       <Header title="Gerenciar Equipe" subtitle="Managing the Team Members" />
       <Box
         m="40px 0 0 0"

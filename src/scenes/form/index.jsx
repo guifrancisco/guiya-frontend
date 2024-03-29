@@ -3,6 +3,7 @@ import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
+import Title from "../../components/Title";
 
 const Form = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
@@ -13,7 +14,8 @@ const Form = () => {
 
   return (
     <Box m="20px">
-      <Header title="CREATE USER" subtitle="Create a New User Profile" />
+      <Title title={"GUIYA | Criar Usuário"}></Title>
+      <Header title="Criar Usuário" subtitle="Create a New User Profile" />
 
       <Formik
         onSubmit={handleFormSubmit}

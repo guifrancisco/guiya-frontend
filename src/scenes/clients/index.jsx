@@ -4,6 +4,7 @@ import { tokens } from "../../theme";
 import { mockDataClients } from "../../data/mockData";
 import Header from "../../components/Header";
 import { useTheme } from "@mui/material";
+import Title from "../../components/Title";
 
 const Clients = () => {
   const theme = useTheme();
@@ -54,6 +55,7 @@ const Clients = () => {
 
   return (
     <Box m="20px">
+      <Title title={"GUIYA | Visualizar Clientes"}></Title>
       <Header
         title="Clientes"
         subtitle="List of Clients for Future Reference"
