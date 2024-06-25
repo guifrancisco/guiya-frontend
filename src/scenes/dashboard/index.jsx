@@ -1,9 +1,9 @@
 import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
 import { tokens, getStatusColor } from "../../theme";
 import { mockTransactions } from "../../data/mockData";
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
-import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
+import ReceiptLongOutlinedIcon from "@mui/icons-material/ReceiptLongOutlined";
 import EmailIcon from "@mui/icons-material/Email";
 import PointOfSaleIcon from "@mui/icons-material/PointOfSale";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
@@ -14,6 +14,7 @@ import BarChart from "../../components/BarChart";
 import StatBox from "../../components/StatBox";
 import ProgressCircle from "../../components/ProgressCircle";
 import Title from "../../components/Title";
+import ConstructionIcon from "@mui/icons-material/Construction";
 
 const Dashboard = () => {
   const theme = useTheme();
@@ -24,9 +25,10 @@ const Dashboard = () => {
       <Title title={"GUIYA | Dashboard"}></Title>
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="Dashboard"/>
+        <Header title="Dashboard" />
 
-        <Box>
+        {/* report to be implemented in the future */}
+        {/* <Box>
           <Button
             sx={{
               backgroundColor: colors.blueAccent[700],
@@ -39,7 +41,7 @@ const Dashboard = () => {
             <DownloadOutlinedIcon sx={{ mr: "10px" }} />
             Baixar Relatórios
           </Button>
-        </Box>
+        </Box> */}
       </Box>
 
       {/* GRID & CHARTS */}
@@ -138,7 +140,24 @@ const Dashboard = () => {
           backgroundColor={colors.primary[400]}
           borderRadius="8px"
         >
-          <Box
+          <Typography
+            variant="h4"
+            fontWeight="bold"
+            color={colors.primary[800]}
+            sx={{ padding: "65px 30px 0 380px" }}
+          >
+            Em Construção
+          </Typography>
+          <ConstructionIcon
+            sx={{
+              color: colors.primary[800],
+              fontSize: "80px",
+              marginLeft: "400px",
+              marginTop: "20px",
+            }}
+          />
+          {/* dashboard to be implemented in the future */}
+          {/* <Box
             mt="25px"
             p="0 30px"
             display="flex "
@@ -171,7 +190,7 @@ const Dashboard = () => {
           </Box>
           <Box height="250px" m="-20px 0 0 0">
             <LineChart isDashboard={true} />
-          </Box>
+          </Box> */}
         </Box>
         <Box
           gridColumn="span 5"
@@ -193,53 +212,52 @@ const Dashboard = () => {
             </Typography>
           </Box>
           {mockTransactions.map((transaction, i) => {
+            const backgroundColor = getStatusColor(
+              transaction.status,
+              theme.palette.mode
+            );
 
-          const backgroundColor = getStatusColor(transaction.status, theme.palette.mode);
-
-          return (
-            <Box
-              key={`${transaction.txId}-${i}`}
-              display="flex"
-              justifyContent="space-between"
-              alignItems="center"
-              borderBottom={`4px solid ${colors.primary[900]}`}
-              p="15px"
-            >
-              <Box>
-                <Typography
+            return (
+              <Box
+                key={`${transaction.txId}-${i}`}
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                borderBottom={`4px solid ${colors.primary[900]}`}
+                p="15px"
+              >
+                <Box>
+                  <Typography
                     color={colors.blueAccent[500]}
                     variant="h5"
                     fontWeight="600"
                   >
                     {transaction.txId}
                   </Typography>
+                </Box>
+                <Box>
+                  <Typography color={colors.grey[100]}>
+                    {transaction.user}
+                  </Typography>
+                </Box>
+                <Box color={colors.grey[100]}>{transaction.date}</Box>
+                <Box
+                  backgroundColor={backgroundColor}
+                  p="5px 10px"
+                  borderRadius="4px"
+                >
+                  {transaction.status}
+                </Box>
+                <Box
+                  backgroundColor={colors.blueAccent[700]}
+                  p="5px 10px"
+                  borderRadius="4px"
+                >
+                  ${transaction.cost}
+                </Box>
               </Box>
-              <Box>
-                <Typography color={colors.grey[100]}>
-                  {transaction.user}
-                </Typography>
-              </Box>
-              <Box color={colors.grey[100]}>
-                {transaction.date}
-              </Box>
-              <Box
-                backgroundColor={backgroundColor}
-                p="5px 10px"
-                borderRadius="4px"
-              >
-                {transaction.status}
-              </Box>
-              <Box
-                backgroundColor={colors.blueAccent[700]}
-                p="5px 10px"
-                borderRadius="4px"
-              >
-                ${transaction.cost}
-              </Box>
-            </Box>
-          );
-        })}
-
+            );
+          })}
         </Box>
 
         {/* ROW 3 */}
@@ -250,7 +268,24 @@ const Dashboard = () => {
           p="30px"
           borderRadius="8px"
         >
-          <Typography variant="h5" fontWeight="600">
+          <Typography
+            variant="h4"
+            fontWeight="bold"
+            color={colors.primary[800]}
+            sx={{ padding: "35px 30px 0 100px" }}
+          >
+            Em Construção
+          </Typography>
+          <ConstructionIcon
+            sx={{
+              color: colors.primary[800],
+              fontSize: "80px",
+              marginLeft: "120px",
+              marginTop: "20px",
+            }}
+          />
+          {/* dashboard to be implemented in the future */}
+          {/* <Typography variant="h5" fontWeight="600">
             Progresso
           </Typography>
           <Box
@@ -268,7 +303,7 @@ const Dashboard = () => {
               $4,352 receita gerada
             </Typography>
             <Typography>Inclui despesas e custos extras diversos</Typography>
-          </Box>
+          </Box> */}
         </Box>
         <Box
           gridColumn="span 4"
@@ -277,15 +312,32 @@ const Dashboard = () => {
           borderRadius="8px"
         >
           <Typography
+            variant="h4"
+            fontWeight="bold"
+            color={colors.primary[800]}
+            sx={{ padding: "65px 30px 0 200px" }}
+          >
+            Em Construção
+          </Typography>
+          <ConstructionIcon
+            sx={{
+              color: colors.primary[800],
+              fontSize: "80px",
+              marginLeft: "225px",
+              marginTop: "20px",
+            }}
+          />
+          {/* dashboard to be implemented in the future */}
+          {/* <Typography
             variant="h5"
             fontWeight="600"
             sx={{ padding: "30px 30px 0 30px" }}
           >
             Quantidade de Vendas
-          </Typography>
-          <Box height="250px" mt="-20px">
+          </Typography> */}
+          {/* <Box height="250px" mt="-20px">
             <BarChart isDashboard={true} />
-          </Box>
+          </Box> */}
         </Box>
       </Box>
     </Box>
