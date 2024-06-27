@@ -200,7 +200,7 @@ const Dashboard = () => {
             colors={colors.grey[100]}
             p="15px"
           >
-            <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
+            <Typography color={colors.grey[100]} variant="h4" fontWeight="600">
               Pedidos
             </Typography>
           </Box>
@@ -223,7 +223,7 @@ const Dashboard = () => {
                   <Typography
                     color={colors.blueAccent[500]}
                     variant="h5"
-                    fontWeight="600"
+                    fontWeight="700"
                   >
                     {transaction.txId}
                   </Typography>
