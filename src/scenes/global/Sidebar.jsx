@@ -54,10 +54,10 @@ const Sidebar = () => {
           padding: "5px 35px 5px 20px !important",
         },
         "& .pro-inner-item:hover": {
-          color: "#868dfb !important",
+          color: `${colors.blueAccent[500]} !important`,
         },
         "& .pro-menu-item.active": {
-          color: "#6870fa !important",
+          color:`${colors.blueAccent[500]} !important`,
         },
       }}
     >
@@ -128,7 +128,7 @@ const Sidebar = () => {
                 >
                   [USER]
                 </Typography>
-                <Typography variant="h5" color={colors.blueAccent[400]}>
+                <Typography variant="h5" fontWeight="600" color={colors.blueAccent[500]}>
                   ADMIN
                 </Typography>
               </Box>
