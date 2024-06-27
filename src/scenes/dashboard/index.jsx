@@ -218,35 +218,44 @@ const Dashboard = () => {
                 alignItems="center"
                 borderBottom={`4px solid ${colors.primary[900]}`}
                 p="15px"
+                flexShrink={0}
               >
-                <Box>
+                <Box flexBasis="20%">
                   <Typography
                     color={colors.blueAccent[500]}
                     variant="h5"
                     fontWeight="700"
+                    paddingLeft="10px"
                   >
                     {transaction.txId}
                   </Typography>
                 </Box>
-                <Box>
+                <Box flexBasis="20%">
                   <Typography color={colors.grey[100]}>
                     {transaction.user}
                   </Typography>
                 </Box>
-                <Box color={colors.grey[100]}>{transaction.date}</Box>
+                <Box flexBasis="20%" color={colors.grey[100]}>
+                  {transaction.date}
+                </Box>
                 <Box
+                  flexBasis="33%"
                   backgroundColor={backgroundColor}
                   p="5px 10px"
                   borderRadius="4px"
+                  textAlign="center"
                 >
                   {transaction.status}
                 </Box>
                 <Box
+                  flexBasis="20%"
                   backgroundColor={colors.blueAccent[700]}
                   p="5px 10px"
+                  ml="10px"
                   borderRadius="4px"
+                  textAlign="center"
                 >
-                  ${transaction.cost}
+                  R${transaction.cost}
                 </Box>
               </Box>
             );
