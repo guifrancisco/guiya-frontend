@@ -1,7 +1,7 @@
 import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
 import { tokens, getStatusColor } from "../../theme";
 import { mockTransactions } from "../../data/mockData";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import ReceiptLongOutlinedIcon from "@mui/icons-material/ReceiptLongOutlined";
 import EmailIcon from "@mui/icons-material/Email";
@@ -15,6 +15,9 @@ import StatBox from "../../components/StatBox";
 import ProgressCircle from "../../components/ProgressCircle";
 import Title from "../../components/Title";
 import ConstructionIcon from "@mui/icons-material/Construction";
+import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
+import CircleNotificationsRoundedIcon from "@mui/icons-material/CircleNotificationsRounded";
+import OfflineBoltRoundedIcon from "@mui/icons-material/OfflineBoltRounded";
 
 const Dashboard = () => {
   const theme = useTheme();
@@ -61,13 +64,12 @@ const Dashboard = () => {
           borderRadius="8px"
         >
           <StatBox
-            title="1,361"
-            subtitle="Mensagens Enviadas"
-            progress="0.75"
+            title="Faturamento"
+            subtitle="R$19.240.300"
             increase="+14%"
             icon={
-              <WhatsAppIcon
-                sx={{ color: colors.blueAccent[500], fontSize: "26px" }}
+              <MonetizationOnIcon
+                sx={{ color: colors.blueAccent[500], fontSize: "80px" }}
               />
             }
           />
@@ -81,13 +83,13 @@ const Dashboard = () => {
           borderRadius="8px"
         >
           <StatBox
-            title="356"
-            subtitle="Total de Vendas"
+            title="Total de Vendas"
+            subtitle="356"
             progress="0.50"
             increase="+21%"
             icon={
-              <PointOfSaleIcon
-                sx={{ color: colors.blueAccent[500], fontSize: "26px" }}
+              <OfflineBoltRoundedIcon
+                sx={{ color: colors.blueAccent[500], fontSize: "80px" }}
               />
             }
           />
@@ -101,13 +103,13 @@ const Dashboard = () => {
           borderRadius="8px"
         >
           <StatBox
-            title="2,441"
-            subtitle="Novos Clientes"
+            title="Novos Clientes"
+            subtitle="2.432"
             progress="0.30"
             increase="+5%"
             icon={
-              <PersonAddIcon
-                sx={{ color: colors.blueAccent[400], fontSize: "26px" }}
+              <AccountCircleRoundedIcon
+                sx={{ color: colors.blueAccent[500], fontSize: "80px" }}
               />
             }
           />
@@ -121,13 +123,13 @@ const Dashboard = () => {
           borderRadius="8px"
         >
           <StatBox
-            title="20"
-            subtitle="Pedidos Ativos"
+            title="Pedidos Ativos"
+            subtitle="20"
             progress="0.80"
             increase="+43%"
             icon={
-              <ReceiptLongOutlinedIcon
-                sx={{ color: colors.blueAccent[500], fontSize: "26px" }}
+              <CircleNotificationsRoundedIcon
+                sx={{ color: colors.blueAccent[500], fontSize: "80px" }}
               />
             }
           />
