@@ -152,14 +152,14 @@ const Sidebar = () => {
               Gerenciar
             </Typography>
             <Item
-              title="Gerenciar Equipe"
-              to="/team"
+              title="Usuários"
+              to="/users"
               icon={<AdminPanelSettingsOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
             <Item
-              title="Visualizar Clientes"
+              title="Clientes"
               to="/clients"
               icon={<PeopleAltOutlinedIcon />}
               selected={selected}
