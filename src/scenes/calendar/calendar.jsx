@@ -50,7 +50,7 @@ const Calendar = () => {
 
   return (
     <Box m="20px">
-      <Title title={"GUIYA | Calendário"}></Title>
+      <Title title={"JOGUI | Calendário"}></Title>
       <Header title="Calendário" subtitle="Full Calendar Interactive Page" />
 
       <Box display="flex" justifyContent="space-between">

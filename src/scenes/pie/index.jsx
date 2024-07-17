@@ -6,7 +6,7 @@ import Title from "../../components/Title";
 const Pie = () => {
   return (
     <Box m="20px">
-      <Title title={"GUIYA | Fidelização de Clientes"}></Title>
+      <Title title={"JOGUI | Fidelização de Clientes"}></Title>
       <Header title="Fidelização de Clientes" subtitle="Simple Pie Chart" />
       <Box height="75vh">
         <PieChart />

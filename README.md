@@ -1,1 +1,1 @@
-# guiya-frontend
+# jogui-frontend

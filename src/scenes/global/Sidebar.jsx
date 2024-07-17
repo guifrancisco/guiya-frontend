@@ -87,7 +87,7 @@ const Sidebar = () => {
                     <Box display="flex" alignItems="center">
                       <HandshakeOutlinedIcon sx={{ fontSize: "35px", mr: "10px", color:colors.grey[100] }} />
                       <Typography variant="h4" color={colors.grey[100]} fontWeight="900" mb="10px">
-                      GUIYA
+                      JOGUI
                       </Typography>
                     </Box>
                     <Typography

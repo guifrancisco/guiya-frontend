@@ -13,7 +13,7 @@ const FAQ = () => {
   const colors = tokens(theme.palette.mode);
   return (
     <Box m="20px">
-      <Title title={"GUIYA | FAQ"}></Title>
+      <Title title={"JOGUI | FAQ"}></Title>
       <Header title="FAQ" subtitle="Frequently Asked Questions Page" />
 
       <Accordion defaultExpanded>

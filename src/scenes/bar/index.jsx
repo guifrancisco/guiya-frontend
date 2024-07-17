@@ -6,7 +6,7 @@ import Title from "../../components/Title";
 const Bar = () => {
   return (
     <Box m="20px">
-      <Title title={"GUIYA | Frequência de Vendas"}></Title>
+      <Title title={"JOGUI | Frequência de Vendas"}></Title>
       <Header title="Frequência de Vendas" subtitle="Simple Bar Chart" />
       <Box height="75vh">
         <BarChart />

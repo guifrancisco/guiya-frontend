@@ -45,7 +45,7 @@ const Orders = () => {
 
   return (
     <Box m="20px">
-      <Title title={"GUIYA | Pedidos"}></Title>
+      <Title title={"JOGUI | Pedidos"}></Title>
       <Header title="Pedidos" subtitle="List of Invoice Balances" />
       <Box
         m="40px 0 0 0"

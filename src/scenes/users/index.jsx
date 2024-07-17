@@ -149,7 +149,7 @@ const Users = () => {
 
   return (
     <Box m="20px">
-      <Title title={"GUIYA | Gerenciar Usuários"} />
+      <Title title={"JOGUI | Gerenciar Usuários"} />
       <Header title="Gerenciar Usuários" subtitle="Gerenciar Usuários" />
       <Box
         m="40px 0 0 0"

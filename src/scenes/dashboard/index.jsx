@@ -58,7 +58,7 @@ const Dashboard = () => {
 
   return (
     <Box m="20px">
-      <Title title="GUIYA | Dashboard" />
+      <Title title="JOGUI | Dashboard" />
       <Box display="flex" justifyContent="space-between" alignItems="center">
         <Header title="Dashboard" />
       </Box>
