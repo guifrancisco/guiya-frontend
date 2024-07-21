@@ -6,7 +6,7 @@ import Title from "../../components/Title";
 const Line = () => {
   return (
     <Box m="20px">
-      <Title title={"JOGUI | Itens Vendidos"}></Title>
+      <Title title={"Jogui | Itens Vendidos"}></Title>
       <Header title="Itens Vendidos" subtitle="Simple Line Chart" />
       <Box height="75vh">
         <LineChart />

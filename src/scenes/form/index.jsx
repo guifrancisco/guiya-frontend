@@ -14,7 +14,7 @@ const Form = () => {
 
   return (
     <Box m="20px">
-      <Title title={"JOGUI | Criar Usuário"}></Title>
+      <Title title={"Jogui | Criar Usuário"}></Title>
       <Header title="Criar Usuário" subtitle="Create a New User Profile" />
 
       <Formik

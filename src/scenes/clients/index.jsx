@@ -55,7 +55,7 @@ const Clients = () => {
 
   return (
     <Box m="20px">
-      <Title title={"JOGUI | Visualizar Clientes"}></Title>
+      <Title title={"Jogui | Visualizar Clientes"}></Title>
       <Header
         title="Clientes"
         subtitle="List of Clients for Future Reference"

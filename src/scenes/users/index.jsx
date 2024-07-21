@@ -176,7 +176,7 @@ const Users = () => {
 
   return (
     <Box m="20px">
-      <Title title={"JOGUI | Gerenciar Usuários"} />
+      <Title title={"Jogui | Gerenciar Usuários"} />
       <Box alignItems="center">
         <Header title="Gerenciar Usuários" subtitle="Gerenciar Usuários" />
       </Box>
