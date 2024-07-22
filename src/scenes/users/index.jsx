@@ -6,9 +6,7 @@ import {
   IconButton,
   Button,
   MenuItem,
-  Select,
-  FormControl,
-  InputLabel,
+  Menu,
   Avatar,
 } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
@@ -26,6 +24,8 @@ import { MoreVertOutlined } from "@mui/icons-material";
 import ExportButton from "../../components/ExportButton";
 import SearchFilter from "../../components/SearchFilter";
 import avatarMap from "../../utils/avatarMap";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const renderHeader = (title, colors) => (
   <Typography variant="h5" fontWeight="bold" color={colors.primary[200]}>
@@ -68,31 +68,37 @@ const renderAccessCell = ({ row: { access } }, colors) => (
   </Box>
 );
 
-const renderActionCell = (params, colors) => (
-  <Box display="flex" justifyContent="space-between">
-    <IconButton
-      sx={{ color: colors.primary[700] }}
-      onClick={() => console.log("More", params.row.id)}
-    >
-      <MoreVertOutlined />
-    </IconButton>
-  </Box>
-);
-
 const Users = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
   const [searchTerm, setSearchTerm] = useState("");
-  const [filterStatus, setFilterStatus] = useState("");
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [selectedUserId, setSelectedUserId] = useState(null);
 
   const handleSearchChange = useCallback((event) => {
     setSearchTerm(event.target.value);
   }, []);
 
-  const handleFilterChange = useCallback((event) => {
-    setFilterStatus(event.target.value);
-  }, []);
+  const handleMenuOpen = (event, userId) => {
+    setAnchorEl(event.currentTarget);
+    setSelectedUserId(userId);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+    setSelectedUserId(null);
+  };
+
+  const handleEdit = () => {
+    console.log("Edit user", selectedUserId);
+    handleMenuClose();
+  };
+
+  const handleDelete = () => {
+    console.log("Delete user", selectedUserId);
+    handleMenuClose();
+  };
 
   const filteredData = useMemo(
     () =>
@@ -100,12 +106,20 @@ const Users = () => {
         const matchesName = user.name
           .toLowerCase()
           .includes(searchTerm.toLowerCase());
-        const matchesStatus = filterStatus
-          ? user.status === filterStatus
-          : true;
-        return matchesName && matchesStatus;
+        return matchesName;
       }),
-    [searchTerm, filterStatus]
+    [searchTerm]
+  );
+
+  const renderActionCell = (params, colors) => (
+    <Box display="flex" justifyContent="space-between">
+      <IconButton
+        sx={{ color: colors.primary[700] }}
+        onClick={(event) => handleMenuOpen(event, params.row.id)}
+      >
+        <MoreVertOutlined />
+      </IconButton>
+    </Box>
   );
 
   const columns = useMemo(
@@ -227,7 +241,7 @@ const Users = () => {
       </Box>
       <Box
         m="40px 0 0 0"
-        height="75vh"
+        height="70vh"
         sx={{
           "& .MuiDataGrid-root": {
             border: "none",
@@ -258,6 +272,22 @@ const Users = () => {
         }}
       >
         <DataGrid rows={filteredData} columns={columns} />
+        <Menu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleMenuClose}
+        >
+          <MenuItem onClick={handleEdit}>
+            <EditIcon sx={{ mr: 1 }} />
+            Editar
+          </MenuItem>
+          <MenuItem onClick={handleDelete}>
+            <DeleteIcon sx={{ color: colors.redAccent[500], mr: 1 }} />
+            <Typography sx={{ color: colors.redAccent[500] }}>
+              Deletar
+            </Typography>
+          </MenuItem>
+        </Menu>
       </Box>
     </Box>
   );
