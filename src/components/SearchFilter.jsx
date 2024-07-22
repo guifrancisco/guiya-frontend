@@ -1,8 +1,8 @@
 import React from "react";
-import { Box, InputBase, IconButton, FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import { Box, InputBase, IconButton } from "@mui/material";
 import { SearchOutlined } from "@mui/icons-material";
 
-const SearchFilter = ({ searchTerm, onSearchChange, filterStatus, onFilterChange, colors }) => (
+const SearchFilter = ({ searchTerm, onSearchChange, colors }) => (
   <Box display="flex" alignItems="center">
     <Box
       display="flex"
@@ -20,22 +20,6 @@ const SearchFilter = ({ searchTerm, onSearchChange, filterStatus, onFilterChange
         <SearchOutlined />
       </IconButton>
     </Box>
-    <FormControl sx={{ m: 1, minWidth: 150 }} size="small">
-      <InputLabel>Status</InputLabel>
-      <Select
-        value={filterStatus}
-        onChange={onFilterChange}
-        displayEmpty
-        label="Status"
-      >
-        <MenuItem value="">
-          <em style={{ visibility: "hidden" }}>Todos</em>
-        </MenuItem>
-        <MenuItem value={"ativo"}>Ativo</MenuItem>
-        <MenuItem value={"suspenso"}>Suspenso</MenuItem>
-        <MenuItem value={"bloqueado"}>Bloqueado</MenuItem>
-      </Select>
-    </FormControl>
   </Box>
 );
 

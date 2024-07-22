@@ -222,8 +222,6 @@ const Users = () => {
         <SearchFilter
           searchTerm={searchTerm}
           onSearchChange={handleSearchChange}
-          filterStatus={filterStatus}
-          onFilterChange={handleFilterChange}
           colors={colors}
         />
       </Box>
