@@ -16,6 +16,7 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
 import ReceiptLongOutlinedIcon from '@mui/icons-material/ReceiptLongOutlined';
 import HandshakeOutlinedIcon from '@mui/icons-material/HandshakeOutlined';
+import avatarMap from "../../utils/avatarMap";
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
@@ -113,9 +114,9 @@ const Sidebar = () => {
               <Box display="flex" justifyContent="center" alignItems="center">
                 <img
                   alt="profile-user"
-                  width="100px"
-                  height="100px"
-                  src={`../../assets/user.jpeg`}
+                  width="120px"
+                  height="120px"
+                  src={avatarMap["user4"]}
                   style={{ cursor: "pointer", borderRadius: "50%" }}
                 />
               </Box>
@@ -126,7 +127,7 @@ const Sidebar = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  [USER]
+                  Guilherme
                 </Typography>
                 <Typography variant="h5" fontWeight="600" color={colors.blueAccent[500]}>
                   ADMIN

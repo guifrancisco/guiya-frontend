@@ -8,6 +8,7 @@ export const mockDataUsers = [
     phone: "(665)121-5454",
     access: "moderador",
     lastAccess: "2024-06-30 14:32",
+    avatar: "user1",
   },
   {
     id: 2,
@@ -17,6 +18,7 @@ export const mockDataUsers = [
     phone: "(421)314-2288",
     access: "membro",
     lastAccess: "2024-06-29 10:15",
+    avatar: "user3",
   },
   {
     id: 3,
@@ -26,6 +28,7 @@ export const mockDataUsers = [
     phone: "(422)982-6739",
     access: "membro",
     lastAccess: "2024-06-28 09:20",
+    avatar: "user6",
   },
   {
     id: 4,
@@ -35,6 +38,7 @@ export const mockDataUsers = [
     phone: "(921)425-6742",
     access: "moderador",
     lastAccess: "2024-06-27 16:45",
+    avatar: "user7",
   },
   {
     id: 5,
@@ -44,6 +48,7 @@ export const mockDataUsers = [
     phone: "(421)445-1189",
     access: "membro",
     lastAccess: "2024-06-26 12:00",
+    avatar: "user8",
   },
   {
     id: 6,
@@ -53,6 +58,7 @@ export const mockDataUsers = [
     phone: "(232)545-6483",
     access: "moderador",
     lastAccess: "2024-06-25 08:30",
+    avatar: "user9",
   },
   {
     id: 7,
@@ -62,6 +68,7 @@ export const mockDataUsers = [
     phone: "(543)124-0123",
     access: "membro",
     lastAccess: "2024-06-24 11:20",
+    avatar: "user10",
   },
   {
     id: 8,
@@ -71,6 +78,7 @@ export const mockDataUsers = [
     phone: "(222)444-5555",
     access: "membro",
     lastAccess: "2024-06-23 14:10",
+    avatar: "user4",
   },
   {
     id: 9,
@@ -80,6 +88,7 @@ export const mockDataUsers = [
     phone: "(444)555-6239",
     access: "moderador",
     lastAccess: "2024-06-22 17:05",
+    avatar: "user3",
   },
 ];
 
