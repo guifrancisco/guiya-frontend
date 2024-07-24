@@ -201,7 +201,7 @@ const Users = () => {
     <Box m="20px">
       <Title title={"Jogui | Gerenciar Usuários"} />
       <Box alignItems="center">
-        <Header title="Gerenciar Usuários" subtitle="Gerenciar Usuários" />
+        <Header title="Usuários" subtitle="Gerenciar Usuários" />
       </Box>
       <Box display="flex" alignItems="center" mb="20px">
         <Button
@@ -249,9 +249,6 @@ const Users = () => {
           "& .MuiDataGrid-cell": {
             borderBottom: "none",
           },
-          "& .name-column--cell": {
-            color: colors.greenAccent[300],
-          },
           "& .MuiDataGrid-columnHeaders": {
             backgroundColor: colors.primary[900],
             borderBottom: "none",
@@ -265,10 +262,7 @@ const Users = () => {
           },
           "& .MuiDataGrid-cell:focus-within": {
             outline: "none !important",
-          },
-          "& .MuiDataGrid-cell:focus": {
-            outline: "none !important",
-          },
+          }
         }}
       >
         <DataGrid rows={filteredData} columns={columns} />

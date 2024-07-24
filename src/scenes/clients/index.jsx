@@ -274,10 +274,7 @@ const Clients = () => {
           },
           "& .MuiDataGrid-cell:focus-within": {
             outline: "none !important",
-          },
-          "& .MuiDataGrid-cell:focus": {
-            outline: "none !important",
-          },
+          }
         }}
       >
         <DataGrid checkboxSelection rows={filteredData} columns={columns} />
