@@ -103,10 +103,14 @@ const Users = () => {
   const filteredData = useMemo(
     () =>
       mockDataUsers.filter((user) => {
-        const matchesName = user.name
+        const matchesName = user.firstName
           .toLowerCase()
           .includes(searchTerm.toLowerCase());
-        return matchesName;
+        const matchesLastName = user.lastName
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase());
+
+        return matchesName || matchesLastName;
       }),
     [searchTerm]
   );
@@ -125,9 +129,9 @@ const Users = () => {
   const columns = useMemo(
     () => [
       {
-        field: "name",
-        flex: 1,
-        renderHeader: () => renderHeader("Nome Completo", colors),
+        field: "firstName",
+        flex: 0.5,
+        renderHeader: () => renderHeader("Nome", colors),
         renderCell: (params) => (
           <Box display="flex" alignItems="center">
             <Avatar src={avatarMap[params.row.avatar]} />
@@ -138,8 +142,20 @@ const Users = () => {
         ),
       },
       {
+        field: "lastName",
+        flex: 0.5,
+        renderHeader: () => renderHeader("Sobrenome", colors),
+        renderCell: (params) => (
+          <Box display="flex" alignItems="center">
+            <Typography variant="h5" color={colors.primary[200]} sx={{ ml: 2 }}>
+              {params.value}
+            </Typography>
+          </Box>
+        ),
+      },
+      {
         field: "phone",
-        flex: 0.7,
+        flex: 0.5,
         renderHeader: () => renderHeader("Telefone", colors),
         renderCell: (params) => (
           <Typography variant="h5" color={colors.primary[200]}>
@@ -168,7 +184,7 @@ const Users = () => {
       {
         field: "access",
         headerName: "Nível de Acesso",
-        flex: 0.6,
+        flex: 0.5,
         renderHeader: () => renderHeader("Nível de Acesso", colors),
         renderCell: (params) => renderAccessCell(params, colors),
       },
@@ -224,7 +240,8 @@ const Users = () => {
         <ExportButton
           data={mockDataUsers}
           columns={[
-            { field: "name", headerName: "Nome Completo" },
+            { field: "firstName", headerName: "Nome" },
+            { field: "lastName", headerName: "Sobrenome" },
             { field: "phone", headerName: "Telefone" },
             { field: "email", headerName: "E-mail" },
             { field: "status", headerName: "Status" },
@@ -262,7 +279,7 @@ const Users = () => {
           },
           "& .MuiDataGrid-cell:focus-within": {
             outline: "none !important",
-          }
+          },
         }}
       >
         <DataGrid rows={filteredData} columns={columns} />

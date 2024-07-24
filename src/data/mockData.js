@@ -1,8 +1,10 @@
 import { tokens } from "../theme";
+
 export const mockDataUsers = [
   {
     id: 1,
-    name: "Jon Snow",
+    firstName: "Jon",
+    lastName: "Snow",
     email: "jonsnow@gmail.com",
     status: "ativo",
     phone: "(665)121-5454",
@@ -12,7 +14,8 @@ export const mockDataUsers = [
   },
   {
     id: 2,
-    name: "Cersei Lannister",
+    firstName: "Cersei",
+    lastName: "Lannister",
     email: "cerseilannister@gmail.com",
     status: "ativo",
     phone: "(421)314-2288",
@@ -22,7 +25,8 @@ export const mockDataUsers = [
   },
   {
     id: 3,
-    name: "Jaime Lannister",
+    firstName: "Jaime",
+    lastName: "Lannister",
     email: "jaimelannister@gmail.com",
     status: "bloqueado",
     phone: "(422)982-6739",
@@ -32,7 +36,8 @@ export const mockDataUsers = [
   },
   {
     id: 4,
-    name: "Anya Stark",
+    firstName: "Anya",
+    lastName: "Stark",
     email: "anyastark@gmail.com",
     status: "bloqueado",
     phone: "(921)425-6742",
@@ -42,7 +47,8 @@ export const mockDataUsers = [
   },
   {
     id: 5,
-    name: "Daenerys Targaryen",
+    firstName: "Daenerys",
+    lastName: "Targaryen",
     email: "daenerystargaryen@gmail.com",
     status: "suspenso",
     phone: "(421)445-1189",
@@ -52,7 +58,8 @@ export const mockDataUsers = [
   },
   {
     id: 6,
-    name: "Ever Melisandre",
+    firstName: "Ever",
+    lastName: "Melisandre",
     email: "evermelisandre@gmail.com",
     status: "ativo",
     phone: "(232)545-6483",
@@ -62,7 +69,8 @@ export const mockDataUsers = [
   },
   {
     id: 7,
-    name: "Ferrara Clifford",
+    firstName: "Ferrara",
+    lastName: "Clifford",
     email: "ferraraclifford@gmail.com",
     status: "ativo",
     phone: "(543)124-0123",
@@ -72,7 +80,8 @@ export const mockDataUsers = [
   },
   {
     id: 8,
-    name: "Rossini Frances",
+    firstName: "Rossini",
+    lastName: "Frances",
     email: "rossinifrances@gmail.com",
     status: "ativo",
     phone: "(222)444-5555",
@@ -82,7 +91,8 @@ export const mockDataUsers = [
   },
   {
     id: 9,
-    name: "Harvey Roxie",
+    firstName: "Harvey",
+    lastName: "Roxie",
     email: "harveyroxie@gmail.com",
     status: "ativo",
     phone: "(444)555-6239",
