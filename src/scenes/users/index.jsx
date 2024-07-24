@@ -175,7 +175,7 @@ const Users = () => {
       {
         field: "lastAccess",
         headerName: "Último Acesso",
-        flex: 0.6,
+        flex: 0.5,
         renderHeader: () => renderHeader("Último Acesso", colors),
         renderCell: (params) => (
           <Typography variant="h5" color={colors.primary[200]}>
@@ -186,7 +186,7 @@ const Users = () => {
       {
         field: "actions",
         headerName: "",
-        flex: 0.2,
+        flex: 0.3,
         disableColumnMenu: true,
         sortable: false,
         filterable: false,
