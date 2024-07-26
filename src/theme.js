@@ -283,18 +283,18 @@ export const getStatusColor = (status,mode) => {
   const colors = tokens(mode);
   switch (status) {
     case "Em Processamento":
-      return colors.blueAccent[700];
+      return colors.blueAccent[600];
     case "Aguardando Pagamento":
-      return colors.pinkyAccent[700];
+      return colors.blueAccent[600];
     case "Pagamento Confirmado":
-      return colors.violetAccent[700];
+      return colors.blueAccent[600];
     case "Aguardando Retirada":
-      return colors.yellowAccent[700];
+      return colors.yellowAccent[400];
     case "Aguardando Entrega":
-      return colors.yellowAccent[700];
+      return colors.yellowAccent[400];
     case "Cancelado":
-      return colors.redAccent[700];
+      return colors.redAccent[500];
     case "Entregue":
-      return colors.greenAccent[700];
+      return colors.greenAccent[400];
   }
 }
