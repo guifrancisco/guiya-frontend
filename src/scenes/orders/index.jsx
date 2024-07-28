@@ -1,81 +1,18 @@
 import React, { useState, useMemo, useCallback } from "react";
-import {
-  Box,
-  Typography,
-  useTheme,
-  IconButton,
-  Button,
-  MenuItem,
-  Menu,
-  Avatar,
-  colors,
-} from "@mui/material";
+import { Box, Typography, useTheme, Button, Avatar } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import { getStatusColor, tokens } from "../../theme";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import { tokens } from "../../theme";
 import { mockDataOrders } from "../../data/mockData";
 import Header from "../../components/Header";
 import Title from "../../components/Title";
-import { MoreVertOutlined } from "@mui/icons-material";
-import ExportButton from "../../components/ExportButton";
 import SearchFilter from "../../components/SearchFilter";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
 import avatarMap from "../../utils/avatarMap";
-import CreditCardIcon from "@mui/icons-material/CreditCard";
-import LocalAtmIcon from "@mui/icons-material/LocalAtm";
-import PixIcon from "@mui/icons-material/Pix";
-import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
-import PendingOutlinedIcon from '@mui/icons-material/PendingOutlined';
-import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
-import ArrowCircleUpOutlinedIcon from '@mui/icons-material/ArrowCircleUpOutlined';
-import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
-import TaskAltOutlinedIcon from '@mui/icons-material/TaskAltOutlined';
-import RadioButtonCheckedOutlinedIcon from '@mui/icons-material/RadioButtonCheckedOutlined';
-
-const renderHeader = (title, colors) => (
-  <Typography variant="h5" fontWeight="bold" color={colors.primary[200]}>
-    {title}
-  </Typography>
-);
-
-const renderStatusCell = ({ row: { status } }, colors, theme) => (
-  <Box 
-    width="100%" 
-    m="0 auto" 
-    p="5px" 
-    display="flex" 
-    alignItems="center"
-    color = {getStatusColor(status, theme)}
-    >
-    {status === "Em Processamento" && <RadioButtonUncheckedIcon />}
-    {status === "Aguardando Pagamento" && <PendingOutlinedIcon />}
-    {status === "Pagamento Confirmado" && <RadioButtonCheckedOutlinedIcon />}
-    {status === "Aguardando Entrega" && <ArrowCircleRightOutlinedIcon/>}
-    {status === "Aguardando Retirada" && <ArrowCircleUpOutlinedIcon/>}
-    {status === "Cancelado" && <HighlightOffOutlinedIcon/>}
-    {status === "Entregue" && <TaskAltOutlinedIcon/>}
-
-    <Typography
-      sx={{ ml: "5px" }}
-      fontWeight="600"
-    >
-      {status}
-    </Typography>
-  </Box>
-);
-
-const renderPaymentCell = ({ row: { paymentType } }, colors) => (
-  <Box width="100%" m="0 auto" p="5px" display="flex" alignItems="center">
-    {paymentType === "crédito" && <CreditCardIcon />}
-    {paymentType === "débito" && <CreditCardIcon />}
-    {paymentType === "dinheiro" && <LocalAtmIcon />}
-    {paymentType === "pix" && <PixIcon />}
-    <Typography color={colors.blueAccent[200]} sx={{ ml: "5px" }}>
-      {paymentType}
-    </Typography>
-  </Box>
-);
+import GridHeader from "../../components/GridHeader";
+import StatusCell from "../../components/StatusCell";
+import PaymentCell from "../../components/PaymentCell";
+import ActionMenu from "../../components/ActionMenu";
+import ActionCell from "../../components/ActionCell";
 
 const Orders = () => {
   const theme = useTheme();
@@ -122,24 +59,13 @@ const Orders = () => {
     [searchTerm]
   );
 
-  const renderActionCell = (params, colors) => (
-    <Box display="flex" justifyContent="space-between">
-      <IconButton
-        sx={{ color: colors.primary[700] }}
-        onClick={(event) => handleMenuOpen(event, params.row.orderId)}
-      >
-        <MoreVertOutlined />
-      </IconButton>
-    </Box>
-  );
-
   const columns = useMemo(
     () => [
       {
         field: "orderId",
         headerName: "Order ID",
         flex: 0.6,
-        renderHeader: () => renderHeader("Order ID", colors),
+        renderHeader: () => <GridHeader title="Order ID" />,
         renderCell: (params) => (
           <Typography
             variant="h5"
@@ -154,7 +80,7 @@ const Orders = () => {
         field: "customerName",
         headerName: "Cliente",
         flex: 1,
-        renderHeader: () => renderHeader("Cliente", colors),
+        renderHeader: () => <GridHeader title="Cliente" />,
         valueGetter: (params) =>
           `${params.row.customer.firstName} ${params.row.customer.lastName}`,
         renderCell: (params) => (
@@ -167,7 +93,7 @@ const Orders = () => {
         field: "createdBy",
         headerName: "Criado por",
         flex: 1,
-        renderHeader: () => renderHeader("Criado por", colors),
+        renderHeader: () => <GridHeader title="Criado por" />,
         valueGetter: (params) => params.row.createdBy.firstName,
         renderCell: (params) => (
           <Box display="flex" alignItems="center">
@@ -182,7 +108,7 @@ const Orders = () => {
         field: "orderDate",
         headerName: "Data do Pedido",
         flex: 0.7,
-        renderHeader: () => renderHeader("Data do Pedido", colors),
+        renderHeader: () => <GridHeader title="Data do Pedido" />,
         renderCell: (params) => (
           <Typography variant="h5" color={colors.primary[200]}>
             {params.value}
@@ -193,7 +119,7 @@ const Orders = () => {
         field: "deliveryDate",
         headerName: "Data de Entrega",
         flex: 0.7,
-        renderHeader: () => renderHeader("Data de Entrega", colors),
+        renderHeader: () => <GridHeader title="Data de Entrega" />,
         renderCell: (params) => (
           <Typography variant="h5" color={colors.primary[200]}>
             {params.value}
@@ -204,22 +130,21 @@ const Orders = () => {
         field: "status",
         headerName: "Status",
         flex: 1,
-        renderHeader: () => renderHeader("Status", colors),
-        renderCell: (params) =>
-          renderStatusCell(params, colors, theme.palette.mode),
+        renderHeader: () => <GridHeader title="Status" />,
+        renderCell: (params) => <StatusCell status={params.value} />,
       },
       {
         field: "paymentType",
         headerName: "Tipo de Pagamento",
         flex: 0.8,
-        renderHeader: () => renderHeader("Tipo de Pagamento", colors),
-        renderCell: (params) => renderPaymentCell(params, colors),
+        renderHeader: () => <GridHeader title="Tipo de Pagamento" />,
+        renderCell: (params) => <PaymentCell paymentType={params.value} />,
       },
       {
         field: "cost",
         headerName: "Valor",
         flex: 0.5,
-        renderHeader: () => renderHeader("Valor", colors),
+        renderHeader: () => <GridHeader title="Valor" />,
         renderCell: (params) => (
           <Typography variant="h5">R$ {params.row.cost}</Typography>
         ),
@@ -232,7 +157,12 @@ const Orders = () => {
         sortable: false,
         filterable: false,
         renderHeader: () => null,
-        renderCell: (params) => renderActionCell(params, colors),
+        renderCell: (params) => (
+          <ActionCell
+            params={params.row.orderId}
+            handleMenuOpen={handleMenuOpen}
+          />
+        ),
       },
     ],
     [colors]
@@ -261,36 +191,6 @@ const Orders = () => {
             Novo pedido
           </Typography>
         </Button>
-        <Box sx={{ width: 20 }} />
-        <ExportButton
-          data={mockDataOrders}
-          columns={[
-            { field: "orderId", headerName: "Order ID" },
-            {
-              field: "customerName",
-              headerName: "Customer Name",
-              valueGetter: (params) =>
-                `${params.row.customer.firstName} ${params.row.customer.lastName}`,
-            },
-            {
-              field: "customerPhone",
-              headerName: "Phone Number",
-              valueGetter: (params) => params.row.customer.phone,
-            },
-            {
-              field: "customerEmail",
-              headerName: "Email",
-              valueGetter: (params) => params.row.customer.email,
-            },
-            { field: "cost", headerName: "Cost" },
-            { field: "orderDate", headerName: "Order Date" },
-            { field: "deliveryDate", headerName: "Delivery Date" },
-            { field: "status", headerName: "Status" },
-            { field: "paymentType", headerName: "Payment Type" },
-            { field: "orderDescription", headerName: "Description" },
-          ]}
-          filename="pedidos-danju"
-        />
         <Box sx={{ width: 20 }} />
         <SearchFilter
           searchTerm={searchTerm}
@@ -330,22 +230,12 @@ const Orders = () => {
           columns={columns}
           getRowId={(row) => row.orderId}
         />
-        <Menu
+        <ActionMenu
           anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={handleMenuClose}
-        >
-          <MenuItem onClick={handleEdit}>
-            <EditIcon sx={{ mr: 1 }} />
-            Editar
-          </MenuItem>
-          <MenuItem onClick={handleDelete}>
-            <DeleteIcon sx={{ color: colors.redAccent[500], mr: 1 }} />
-            <Typography sx={{ color: colors.redAccent[500] }}>
-              Deletar
-            </Typography>
-          </MenuItem>
-        </Menu>
+          handleMenuClose={handleMenuClose}
+          handleEdit={handleEdit}
+          handleDelete={handleDelete}
+        />
       </Box>
     </Box>
   );
