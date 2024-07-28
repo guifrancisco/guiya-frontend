@@ -12,17 +12,23 @@ import GridHeader from "../../components/GridHeader";
 import StatusCell from "../../components/StatusCell";
 import ActionMenu from "../../components/ActionMenu";
 import ActionCell from "../../components/ActionCell";
+import StatusFilterSelect from "../../components/StatusFilterSelect";
 
 const Orders = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
   const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState("");
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedOrderId, setSelectedOrderId] = useState(null);
 
   const handleSearchChange = useCallback((event) => {
     setSearchTerm(event.target.value);
+  }, []);
+
+  const handleStatusChange = useCallback((event) => {
+    setStatusFilter(event.target.value);
   }, []);
 
   const handleMenuOpen = (event, orderId) => {
@@ -53,9 +59,13 @@ const Orders = () => {
             .toLowerCase()
             .includes(searchTerm.toLowerCase());
 
-        return matchesCustomerName;
+        const matchesStatus = statusFilter
+          ? order.status === statusFilter
+          : true;
+
+        return matchesCustomerName && matchesStatus;
       }),
-    [searchTerm]
+    [searchTerm, statusFilter]
   );
 
   const columns = useMemo(
@@ -195,6 +205,11 @@ const Orders = () => {
           searchTerm={searchTerm}
           onSearchChange={handleSearchChange}
           colors={colors}
+        />
+        <Box sx={{ width: 20 }} />
+        <StatusFilterSelect
+          value={statusFilter}
+          onChange={handleStatusChange}
         />
       </Box>
       <Box

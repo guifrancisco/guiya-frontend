@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography, useTheme } from "@mui/material";
-import { tokens, getStatusColor } from "../theme"; // Ajustado o caminho
+import { tokens, getStatusColor } from "../theme";
 
 const TransactionRow = ({ transaction, isExtraSmall, isLarge, isMedium, isSmall, isExtraLarge }) => {
   const theme = useTheme();
@@ -53,7 +53,7 @@ const TransactionRow = ({ transaction, isExtraSmall, isLarge, isMedium, isSmall,
         flexBasis="20%"
         backgroundColor={colors.blueAccent[600]}
         color={"white"}
-        fontWeight="bold"
+        fontWeight={600}
         p="5px 10px"
         ml="10px"
         borderRadius="4px"

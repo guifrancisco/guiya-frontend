@@ -8,7 +8,6 @@ const SearchFilter = ({ searchTerm, onSearchChange, colors }) => (
       display="flex"
       backgroundColor={colors.primary[400]}
       borderRadius="3px"
-      mr={2}
     >
       <InputBase
         sx={{ ml: 2, mr:5, flex: 1 }}
