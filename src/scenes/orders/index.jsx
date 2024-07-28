@@ -10,7 +10,6 @@ import SearchFilter from "../../components/SearchFilter";
 import avatarMap from "../../utils/avatarMap";
 import GridHeader from "../../components/GridHeader";
 import StatusCell from "../../components/StatusCell";
-import PaymentCell from "../../components/PaymentCell";
 import ActionMenu from "../../components/ActionMenu";
 import ActionCell from "../../components/ActionCell";
 
@@ -138,7 +137,7 @@ const Orders = () => {
         headerName: "Tipo de Pagamento",
         flex: 0.8,
         renderHeader: () => <GridHeader title="Tipo de Pagamento" />,
-        renderCell: (params) => <PaymentCell paymentType={params.value} />,
+        renderCell: (params) => <StatusCell status={params.value}/>,
       },
       {
         field: "cost",
@@ -146,7 +145,7 @@ const Orders = () => {
         flex: 0.5,
         renderHeader: () => <GridHeader title="Valor" />,
         renderCell: (params) => (
-          <Typography variant="h5">R$ {params.row.cost}</Typography>
+          <Typography variant="h5" fontWeight={600}>R$ {params.row.cost.toFixed(2)}</Typography>
         ),
       },
       {

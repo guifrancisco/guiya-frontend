@@ -1,72 +1,18 @@
 import React, { useState, useMemo, useCallback } from "react";
-import {
-  Box,
-  Typography,
-  useTheme,
-  IconButton,
-  Button,
-  MenuItem,
-  Menu,
-  Avatar,
-} from "@mui/material";
+import { Box, Typography, useTheme, Button, Avatar } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { mockDataUsers } from "../../data/mockData";
-import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
-import PersonOffIcon from "@mui/icons-material/PersonOff";
-import GppBadIcon from "@mui/icons-material/GppBad";
-import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import Header from "../../components/Header";
 import Title from "../../components/Title";
-import { MoreVertOutlined } from "@mui/icons-material";
 import ExportButton from "../../components/ExportButton";
 import SearchFilter from "../../components/SearchFilter";
 import avatarMap from "../../utils/avatarMap";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
-
-const renderHeader = (title, colors) => (
-  <Typography variant="h5" fontWeight="bold" color={colors.primary[200]}>
-    {title}
-  </Typography>
-);
-
-const renderStatusCell = ({ row: { status } }, colors) => (
-  <Box
-    width="60%"
-    m="0 auto"
-    p="5px"
-    display="flex"
-    justifyContent="center"
-    backgroundColor={
-      status === "ativo"
-        ? colors.greenAccent[600]
-        : status === "suspenso"
-        ? colors.yellowAccent[600]
-        : colors.redAccent[600]
-    }
-    borderRadius="4px"
-  >
-    {status === "ativo" && <AssignmentIndIcon />}
-    {status === "suspenso" && <PersonOffIcon />}
-    {status === "bloqueado" && <GppBadIcon />}
-    <Typography color={colors.grey[100]} sx={{ ml: "5px" }}>
-      {status}
-    </Typography>
-  </Box>
-);
-
-const renderAccessCell = ({ row: { access } }, colors) => (
-  <Box width="100%" m="0 auto" p="5px" display="flex" justifyContent="left">
-    {access === "moderador" && <AdminPanelSettingsOutlinedIcon />}
-    {access === "membro" && <PersonOutlineIcon />}
-    <Typography color={colors.blueAccent[200]} sx={{ ml: "5px" }}>
-      {access}
-    </Typography>
-  </Box>
-);
+import ActionMenu from "../../components/ActionMenu";
+import ActionCell from "../../components/ActionCell";
+import GridHeader from "../../components/GridHeader";
+import StatusCell from "../../components/StatusCell";
 
 const Users = () => {
   const theme = useTheme();
@@ -115,23 +61,12 @@ const Users = () => {
     [searchTerm]
   );
 
-  const renderActionCell = (params, colors) => (
-    <Box display="flex" justifyContent="space-between">
-      <IconButton
-        sx={{ color: colors.primary[700] }}
-        onClick={(event) => handleMenuOpen(event, params.row.id)}
-      >
-        <MoreVertOutlined />
-      </IconButton>
-    </Box>
-  );
-
   const columns = useMemo(
     () => [
       {
         field: "firstName",
         flex: 0.5,
-        renderHeader: () => renderHeader("Nome", colors),
+        renderHeader: () => <GridHeader title="Nome" />,
         renderCell: (params) => (
           <Box display="flex" alignItems="center">
             <Avatar src={avatarMap[params.row.avatar]} />
@@ -144,7 +79,7 @@ const Users = () => {
       {
         field: "lastName",
         flex: 0.5,
-        renderHeader: () => renderHeader("Sobrenome", colors),
+        renderHeader: () => <GridHeader title="Sobrenome" />,
         renderCell: (params) => (
           <Box display="flex" alignItems="center">
             <Typography variant="h5" color={colors.primary[200]} sx={{ ml: 2 }}>
@@ -156,7 +91,7 @@ const Users = () => {
       {
         field: "phone",
         flex: 0.5,
-        renderHeader: () => renderHeader("Telefone", colors),
+        renderHeader: () => <GridHeader title="Telefone" />,
         renderCell: (params) => (
           <Typography variant="h5" color={colors.primary[200]}>
             {params.value}
@@ -167,7 +102,7 @@ const Users = () => {
         field: "email",
         headerName: "Email",
         flex: 0.7,
-        renderHeader: () => renderHeader("E-mail", colors),
+        renderHeader: () => <GridHeader title="Email" />,
         renderCell: (params) => (
           <Typography variant="h5" color={colors.primary[200]}>
             {params.value}
@@ -178,21 +113,23 @@ const Users = () => {
         field: "status",
         headerName: "Status",
         flex: 1,
-        renderHeader: () => renderHeader("Status", colors),
-        renderCell: (params) => renderStatusCell(params, colors),
+        renderHeader: () => <GridHeader title="Status" />,
+        renderCell: (params) => (
+          <StatusCell status={params.value} withBackground={true} />
+        ),
       },
       {
         field: "access",
         headerName: "Nível de Acesso",
         flex: 0.5,
-        renderHeader: () => renderHeader("Nível de Acesso", colors),
-        renderCell: (params) => renderAccessCell(params, colors),
+        renderHeader: () => <GridHeader title="Nível de Acesso" />,
+        renderCell: (params) => <StatusCell status={params.value} />,
       },
       {
         field: "lastAccess",
         headerName: "Último Acesso",
         flex: 0.5,
-        renderHeader: () => renderHeader("Último Acesso", colors),
+        renderHeader: () => <GridHeader title="Último Acesso" />,
         renderCell: (params) => (
           <Typography variant="h5" color={colors.primary[200]}>
             {params.value}
@@ -207,7 +144,12 @@ const Users = () => {
         sortable: false,
         filterable: false,
         renderHeader: () => null,
-        renderCell: (params) => renderActionCell(params, colors),
+        renderCell: (params) => (
+          <ActionCell
+            params={params.row.orderId}
+            handleMenuOpen={handleMenuOpen}
+          />
+        ),
       },
     ],
     [colors]
@@ -283,22 +225,12 @@ const Users = () => {
         }}
       >
         <DataGrid rows={filteredData} columns={columns} />
-        <Menu
+        <ActionMenu
           anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={handleMenuClose}
-        >
-          <MenuItem onClick={handleEdit}>
-            <EditIcon sx={{ mr: 1 }} />
-            Editar
-          </MenuItem>
-          <MenuItem onClick={handleDelete}>
-            <DeleteIcon sx={{ color: colors.redAccent[500], mr: 1 }} />
-            <Typography sx={{ color: colors.redAccent[500] }}>
-              Deletar
-            </Typography>
-          </MenuItem>
-        </Menu>
+          handleMenuClose={handleMenuClose}
+          handleEdit={handleEdit}
+          handleDelete={handleDelete}
+        />
       </Box>
     </Box>
   );
