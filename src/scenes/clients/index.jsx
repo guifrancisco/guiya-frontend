@@ -1,32 +1,16 @@
 import React, { useState, useMemo, useCallback } from "react";
-import {
-  Box,
-  Typography,
-  useTheme,
-  IconButton,
-  Button,
-  MenuItem,
-  Menu,
-} from "@mui/material";
+import { Box, Typography, useTheme, Button } from "@mui/material";
+import { AddCircle } from "@mui/icons-material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { mockDataClients } from "../../data/mockData";
 import Header from "../../components/Header";
 import Title from "../../components/Title";
-import {
-  MoreVertOutlined,
-  Edit as EditIcon,
-  Delete as DeleteIcon,
-  AddCircle as AddCircleIcon,
-} from "@mui/icons-material";
 import ExportButton from "../../components/ExportButton";
 import SearchFilter from "../../components/SearchFilter";
-
-const renderHeader = (title, colors) => (
-  <Typography variant="h5" fontWeight="bold" color={colors.primary[200]}>
-    {title}
-  </Typography>
-);
+import ActionMenu from "../../components/ActionMenu";
+import ActionCell from "../../components/ActionCell";
+import GridHeader from "../../components/GridHeader";
 
 const Clients = () => {
   const theme = useTheme();
@@ -74,24 +58,13 @@ const Clients = () => {
     [searchTerm]
   );
 
-  const renderActionCell = (params, colors) => (
-    <Box display="flex" justifyContent="space-between">
-      <IconButton
-        sx={{ color: colors.primary[700] }}
-        onClick={(event) => handleMenuOpen(event, params.row.id)}
-      >
-        <MoreVertOutlined />
-      </IconButton>
-    </Box>
-  );
-
   const columns = useMemo(
     () => [
       {
         field: "id",
         headerName: "ID",
         flex: 0.3,
-        renderHeader: () => renderHeader("ID", colors),
+        renderHeader: () => <GridHeader title="ID" />,
         renderCell: (params) => (
           <Typography
             fontWeight={600}
@@ -106,7 +79,7 @@ const Clients = () => {
         field: "firstName",
         headerName: "Nome",
         flex: 0.5,
-        renderHeader: () => renderHeader("Nome", colors),
+        renderHeader: () => <GridHeader title="Nome" />,
         renderCell: (params) => (
           <Typography variant="h5" color={colors.primary[200]}>
             {params.value}
@@ -117,7 +90,7 @@ const Clients = () => {
         field: "lastName",
         headerName: "Sobrenome",
         flex: 0.5,
-        renderHeader: () => renderHeader("Sobrenome", colors),
+        renderHeader: () => <GridHeader title="Sobrenome" />,
         renderCell: (params) => (
           <Typography variant="h5" color={colors.primary[200]}>
             {params.value}
@@ -128,7 +101,7 @@ const Clients = () => {
         field: "birthDate",
         headerName: "Data de Nascimento",
         flex: 0.7,
-        renderHeader: () => renderHeader("Data de Nascimento", colors),
+        renderHeader: () => <GridHeader title="Data de Nascimento" />,
         renderCell: (params) => (
           <Typography variant="h5" color={colors.primary[200]}>
             {params.value}
@@ -139,7 +112,7 @@ const Clients = () => {
         field: "phone",
         headerName: "Telefone",
         flex: 0.5,
-        renderHeader: () => renderHeader("Telefone", colors),
+        renderHeader: () => <GridHeader title="Telefone" />,
         renderCell: (params) => (
           <Typography variant="h5" color={colors.primary[200]}>
             {params.value}
@@ -150,7 +123,7 @@ const Clients = () => {
         field: "email",
         headerName: "Email",
         flex: 1,
-        renderHeader: () => renderHeader("Email", colors),
+        renderHeader: () => <GridHeader title="Email" />,
         renderCell: (params) => (
           <Typography variant="h5" color={colors.primary[200]}>
             {params.value}
@@ -161,7 +134,7 @@ const Clients = () => {
         field: "address",
         headerName: "Endereço",
         flex: 1,
-        renderHeader: () => renderHeader("Endereço", colors),
+        renderHeader: () => <GridHeader title="Endereço" />,
         renderCell: (params) => (
           <Typography variant="h5" color={colors.primary[200]}>
             {params.value}
@@ -172,7 +145,7 @@ const Clients = () => {
         field: "city",
         headerName: "Cidade",
         flex: 0.6,
-        renderHeader: () => renderHeader("Cidade", colors),
+        renderHeader: () => <GridHeader title="Cidade" />,
         renderCell: (params) => (
           <Typography variant="h5" color={colors.primary[200]}>
             {params.value}
@@ -183,7 +156,7 @@ const Clients = () => {
         field: "zipCode",
         headerName: "CEP",
         flex: 0.4,
-        renderHeader: () => renderHeader("CEP", colors),
+        renderHeader: () => <GridHeader title="CEP" />,
         renderCell: (params) => (
           <Typography variant="h5" color={colors.primary[200]}>
             {params.value}
@@ -198,7 +171,9 @@ const Clients = () => {
         sortable: false,
         filterable: false,
         renderHeader: () => null,
-        renderCell: (params) => renderActionCell(params, colors),
+        renderCell: (params) => (
+          <ActionCell id={params.value} handleMenuOpen={handleMenuOpen} />
+        ),
       },
     ],
     [colors]
@@ -222,7 +197,7 @@ const Clients = () => {
             },
           }}
           onClick={() => console.log("Adicionar")}
-          startIcon={<AddCircleIcon sx={{ color: "white" }} />}
+          startIcon={<AddCircle sx={{ color: "white" }} />}
         >
           <Typography variant="h6" fontWeight="bold" color={"white"}>
             Novo cliente
@@ -274,26 +249,16 @@ const Clients = () => {
           },
           "& .MuiDataGrid-cell:focus-within": {
             outline: "none !important",
-          }
+          },
         }}
       >
         <DataGrid checkboxSelection rows={filteredData} columns={columns} />
-        <Menu
+        <ActionMenu
           anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={handleMenuClose}
-        >
-          <MenuItem onClick={handleEdit}>
-            <EditIcon sx={{ mr: 1 }} />
-            Editar
-          </MenuItem>
-          <MenuItem onClick={handleDelete}>
-            <DeleteIcon sx={{ color: colors.redAccent[500], mr: 1 }} />
-            <Typography sx={{ color: colors.redAccent[500] }}>
-              Deletar
-            </Typography>
-          </MenuItem>
-        </Menu>
+          handleMenuClose={handleMenuClose}
+          handleEdit={handleEdit}
+          handleDelete={handleDelete}
+        />
       </Box>
     </Box>
   );
